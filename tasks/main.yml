@@ -8,10 +8,10 @@
 - block:
     - name: Login to oVirt
       ovirt_auth:
-        url: "{{ engine_url | default(omit) }}"
-        username: "{{ engine_user | default(omit) }}"
-        password: "{{ engine_password | default(omit) }}"
-        ca_file: "{{ engine_cafile | default(omit) }}"
+        url: "{{ engine_url | default(omit) | default(lookup('env','host')) }}"
+        username: "{{ engine_user | default(omit) | default(lookup('env','username')) }}"
+        password: "{{ engine_password | default(omit) | default(lookup('env','password')) }}"
+        ca_file: "{{ engine_cafile | default(omit) | default(lookup('env','ca_file')) }}"
         insecure: "{{ engine_insecure | default(true) }}"
       when: ovirt_auth is undefined
       register: loggedin
