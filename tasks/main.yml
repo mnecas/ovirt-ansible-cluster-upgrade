@@ -9,6 +9,7 @@
     - name: Login to oVirt
       ovirt_auth:
         url: "{{ engine_url | default(omit) }}"
+        hostname: "{{ engine_fqdn | default(omit) }}"
         username: "{{ engine_user | default(omit) }}"
         password: "{{ engine_password | default(omit) }}"
         ca_file: "{{ engine_cafile | default(omit) }}"
