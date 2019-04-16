@@ -43,6 +43,7 @@
           Authorization: "Bearer {{ ovirt_auth.token }}"
         body:
           upgrade_action: start
+      ignore_errors: "yes"
       register: upgrade_set
       when: ovirt_api.product_info.version.major >= 4 and ovirt_api.product_info.version.minor >= 3
 
@@ -179,7 +180,7 @@
         body:
           upgrade_action: finish
       when:
-        - upgrade_set is defined and not upgrade_set.failed
+        - upgrade_set is defined or upgrade_set.failed
         - ovirt_api.product_info.version.major >= 4 and ovirt_api.product_info.version.minor >= 3
 
     - name: Logout from oVirt
