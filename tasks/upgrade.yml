@@ -38,7 +38,7 @@
     pinned_vms_names: "{{ pinned_vms_names + pinned_to_host_vms.results | selectattr('changed') | map(attribute='item.name') | list }}"
 
 - name: Start ovirt job step
-  ovirt_job_28:
+  ovirt_job_29:
     auth: "{{ ovirt_auth }}"
     description: "Upgrading hosts"
     steps:
@@ -55,7 +55,7 @@
     timeout: "{{ upgrade_timeout }}"
 
 - name: Finish ovirt job step
-  ovirt_job_28:
+  ovirt_job_29:
     auth: "{{ ovirt_auth }}"
     description: "Upgrading hosts"
     steps:
