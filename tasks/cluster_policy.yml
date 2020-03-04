@@ -16,7 +16,7 @@
 - name: Set in cluster upgrade policy
   ovirt_cluster:
     auth: "{{ ovirt_auth }}"
-    name: "{{ cluster_name }}"
+    name: "{{ cluster_name | regex_replace('\"','') }}"
     scheduling_policy: cluster_maintenance
   register: cluster_policy
   when:
